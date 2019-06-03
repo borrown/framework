@@ -566,19 +566,19 @@ if (!function_exists('session')) {
     {
         if (is_array($name)) {
             // 初始化
-            Session::init($name);
+            app('session')->init($name);
         } elseif (is_null($name)) {
             // 清除
-            Session::clear($value);
+            app('session')->clear($value);
         } elseif ('' === $value) {
             // 判断或获取
-            return 0 === strpos($name, '?') ? Session::has(substr($name, 1), $prefix) : Session::get($name, $prefix);
+            return 0 === strpos($name, '?') ? app('session')->has(substr($name, 1), $prefix) : app('session')->get($name, $prefix);
         } elseif (is_null($value)) {
             // 删除
-            return Session::delete($name, $prefix);
+            return app('session')->delete($name, $prefix);
         } else {
             // 设置
-            return Session::set($name, $value, $prefix);
+            return app('session')->set($name, $value, $prefix);
         }
     }
 }
